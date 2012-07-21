@@ -197,7 +197,7 @@ module Anemoi
       end
 
       def canonical_city(text)
-        text.gsub!("東京都","東京")
+        text = text.gsub("東京都","東京")
         text
       end
     end

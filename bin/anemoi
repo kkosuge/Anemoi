@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# coding: utf-8
 
 require "pp"
 require "date"
@@ -11,5 +12,20 @@ end
 
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "anemoi"
+
+module Horai
+  class JaJP < Parser
+    def normalize(text)
+      normalized = text
+      normalized = normalized.tr(NORMALIZE_FROM, NORMALIZE_TO)
+      digits = "一二三四五六七八九十百千"
+      classes = "万億兆"
+      normalized.gsub!(/[#{digits}][#{digits}#{classes}]*/) do |match|
+        JaNumber::JaNumberParser::parse(match)
+      end
+      return normalized
+    end
+  end
+end
 
 pp Anemoi.get_weather(text)
