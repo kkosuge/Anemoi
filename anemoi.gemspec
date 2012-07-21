@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["kkosuge@about.me"]
   gem.description   = %q{get weather forecast from expression with natural language (ONLY IN JAPANESE)}
   gem.summary       = %q{get weather forecast from expression with natural language (ONLY IN JAPANESE)}
-  gem.homepage      = "http://kkosuge.github.com/anemoi/"
+  gem.homepage      = "https://github.com/kkosuge/Anemoi"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
