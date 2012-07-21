@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+
+require "pp"
+require "date"
+
+text = ARGV[0]
+unless text
+  puts "Usage: anemoi [明日の天気]"
+  exit!
+end
+
+$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
+require "anemoi"
+
+pp Anemoi.get_weather(text)
