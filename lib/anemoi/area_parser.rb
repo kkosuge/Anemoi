@@ -170,8 +170,8 @@ module Anemoi
       "沖縄"   => "那覇"
     }
 
-    @@city_regexp = /#{ID_BY_CITY.map(&:first).join('|')}/
-    @@pref_regexp = /#{CITY_BY_PREF.map(&:first).join('|')}/
+    @@city_regexp = /#{ID_BY_CITY.keys.join('|')}/
+    @@pref_regexp = /#{CITY_BY_PREF.keys.join('|')}/
 
     class << self
       def parse(text)
