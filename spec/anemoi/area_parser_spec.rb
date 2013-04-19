@@ -17,13 +17,13 @@ describe Anemoi::AreaParser do
 
   describe "#info_by_city" do
     it "町が含まれたテキストからidと町の名前を返す" do
-      Anemoi::AreaParser.info_by_city('前橋〜〜').should == { :id => 58, :name => '前橋' }
+      Anemoi::AreaParser.info_by_city('前橋〜〜').should == { :id => "100010", :name => '前橋' }
     end
   end
 
   describe "#parse" do
     it "県が含まれた文字列からidを返す" do
-      Anemoi::AreaParser.parse('明日の群馬の天気など')[:id].should == 58
+      Anemoi::AreaParser.parse('明日の群馬の天気など')[:id].should == "100010"
     end
 
     it "県が含まれなかったらnilを返す" do
@@ -31,8 +31,8 @@ describe Anemoi::AreaParser do
     end
 
     it "京都東京都" do
-      Anemoi::AreaParser.info_by_city('京都')[:id].should == 79
-      Anemoi::AreaParser.info_by_city('東京都')[:id].should == 63
+      Anemoi::AreaParser.info_by_city('京都')[:id].should == "260010"
+      Anemoi::AreaParser.info_by_city('東京都')[:id].should == "130010"
     end
 
     it "津" do

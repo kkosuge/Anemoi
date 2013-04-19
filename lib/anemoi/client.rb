@@ -4,8 +4,7 @@ module Anemoi
   class Client
     include HTTParty
 
-    WEATHER_URL    = "http://weather.livedoor.com/forecast/webservice/rest/v1"
-    AREA_TABLE_URL = "http://weather.livedoor.com/forecast/rss/forecastmap.xml"
+    WEATHER_URL    = "http://weather.livedoor.com/forecast/webservice/json/v1"
 
     def initialize(options={})
       options[:default_city] ||= "東京"
@@ -18,8 +17,13 @@ module Anemoi
       specified_date = horai_date_parse(text)
       city  = specified_city || @default_city
       date  = specified_date || @default_date
-      query = { :city => city[:id], :day => date }.merge(opts)
+      query = { :city => city[:id] }.merge(opts)
       hash  = get WEATHER_URL, :query => query
+      hash_by_date = case date
+                     when :tomorrow then hash["forecasts"].values_at(1)
+                     when :day_after_tomorrow then hash["forecasts"].values_at(2)
+                     else hash["forecasts"].values_at(0)
+                     end.first
 
       {
         :specified => {
@@ -27,14 +31,14 @@ module Anemoi
           :city => specified_city
         },
         :forecastday  => date,
-        :forecastdate => hash["lwws"]["forecastdate"],
-        :day          => hash["lwws"]["day"],
-        :location     => hash["lwws"]["location"],
-        :weather      => hash["lwws"]["telop"],
-        :description  => hash["lwws"]["description"],
-        :temperature  => hash["lwws"]["temperature"]
+        :forecastdate => hash["publicTime"],
+        :day          => hash_by_date["date"],
+        :location     => hash["location"],
+        :weather      => hash_by_date["telop"],
+        :description  => hash["description"]["text"],
+        :temperature  => hash_by_date["temperature"]
       }.deep_symbolize_keys
-    rescue ParseError
+    rescue
       nil
     end
 

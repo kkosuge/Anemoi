@@ -1,6 +1,6 @@
 # Anemoi
 
-Anemoiに日本語で天気を聞くと天気予報を教えてくれます。  
+Anemoiに日本語で天気を聞くと天気予報を教えてくれます。
 天気予報は Livedoor Weather Web Service ( [http://weather.livedoor.com/weather_hacks/](http://weather.livedoor.com/weather_hacks/) )からお借りしています。
 
 ## Installation
@@ -92,11 +92,11 @@ ap ac.get_weather('明日のお天気お願いします〜〜')
 }
 ```
 
-Livedoor Weather Web Service に依存しているため、取得できる地域は [RSSフィード一覧](http://weather.livedoor.com/weather_hacks/rss_feed_list.html) の142箇所に限られます。  
+Livedoor Weather Web Service に依存しているため、取得できる地域は [RSSフィード一覧](http://weather.livedoor.com/weather_hacks/rss_feed_list.html) の142箇所に限られます。
 今日、明日、明後日の３日間に対応。
 
 ## Dependency
 
     gem 'horai'
     gem 'httparty'
-    
+    gem 'nokogiri'
