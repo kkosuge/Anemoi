@@ -1,6 +1,7 @@
 require "httparty"
 require "horai"
 require "date"
+require "nokogiri"
 
 require "anemoi/version"
 require "anemoi/hash"

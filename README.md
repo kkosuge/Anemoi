@@ -99,4 +99,4 @@ Livedoor Weather Web Service に依存しているため、取得できる地域
 
     gem 'horai'
     gem 'httparty'
-    
+    gem 'nokogiri'
