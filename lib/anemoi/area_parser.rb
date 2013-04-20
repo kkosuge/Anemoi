@@ -58,7 +58,7 @@ module Anemoi
 
         if city = text.match(/#{id_by_city.keys.join('|')}/)
           name = city.values_at(0).first
-          return { :id => id_by_city[name], :name => name}
+          return { :id => id_by_city[name], :name => name }
         end
         nil
       end
